@@ -87,11 +87,11 @@ rules2 = [
 
 
 #  __INPUTS/COMPUTING__
-tipping_ctrl = ctrl.ControlSystem(rules1 + rules2)
-tipping = ctrl.ControlSystemSimulation(tipping_ctrl)
-tipping.input['Number of spare servers (normalized)'] = 0.2
-tipping.input['Repair utilisation factor'] = 0.5
-tipping.input['Mean delay (normalized)'] = 0.8
-tipping.compute()
-print(tipping.output['Number of spare parts (normalized)'])
-nsp.view(sim=tipping)
+spare_parts_ctrl = ctrl.ControlSystem(rules1 + rules2)
+spare_parts = ctrl.ControlSystemSimulation(spare_parts_ctrl)
+spare_parts.input['Number of spare servers (normalized)'] = 0.0
+spare_parts.input['Repair utilisation factor'] = 0.2
+spare_parts.input['Mean delay (normalized)'] = 0.1
+spare_parts.compute()
+print(spare_parts.output['Number of spare parts (normalized)'])
+nsp.view(sim=spare_parts)
