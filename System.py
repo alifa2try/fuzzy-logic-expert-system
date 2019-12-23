@@ -85,6 +85,8 @@ rules2 = [
     ctrl.Rule(md['medium'] & nss['large'] & ruf['high'], nsp['rather small']),
 ]
 
+
+#  __INPUTS/COMPUTING__
 tipping_ctrl = ctrl.ControlSystem(rules1 + rules2)
 tipping = ctrl.ControlSystemSimulation(tipping_ctrl)
 tipping.input['Number of spare servers (normalized)'] = 0.2
