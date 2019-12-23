@@ -3,7 +3,7 @@ An expert system based on fuzzy logic.
 
 ## Dependencies
 ```shell script
-pip install -U scikit-fuzzy
+pip install -U scikit-fuzzy matplotlib
 
 ```
 
