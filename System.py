@@ -1,6 +1,7 @@
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
+import time
 
 # New Antecedent/Consequent objects hold universe variables and membership
 # Antecedent = input, Consequent = output
@@ -35,7 +36,7 @@ nsp['medium'] = fuzz.trimf(nsp.universe, [0.30, 0.50, 0.70])
 nsp['rather large'] = fuzz.trimf(nsp.universe, [0.55, 0.65, 0.75])
 nsp['large'] = fuzz.trimf(nsp.universe, [0.60, 0.80, 1])
 nsp['very large'] = fuzz.trapmf(nsp.universe, [0.70, 0.85, 1, 1])
-# n.view()
+# nsp.view()
 
 # __RULES__
 # Rule Base 1
@@ -89,9 +90,14 @@ rules2 = [
 #  __INPUTS/COMPUTING__
 spare_parts_ctrl = ctrl.ControlSystem(rules1 + rules2)
 spare_parts = ctrl.ControlSystemSimulation(spare_parts_ctrl)
-spare_parts.input['Number of spare servers (normalized)'] = 0.0
+spare_parts.input['Number of spare servers (normalized)'] = 0.2
 spare_parts.input['Repair utilisation factor'] = 0.2
-spare_parts.input['Mean delay (normalized)'] = 0.1
+spare_parts.input['Mean delay (normalized)'] = 0.0
+
+start = time.time()
 spare_parts.compute()
+end = time.time()
+print(round(end - start, 2))
+
 print(spare_parts.output['Number of spare parts (normalized)'])
 nsp.view(sim=spare_parts)
